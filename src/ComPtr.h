@@ -19,7 +19,11 @@
 #ifndef COMPTR_H_
 #define COMPTR_H_
 
+#ifdef _WIN32
+#include <objbase.h>
+#else
 #include <LinuxCOM.h>
+#endif
 
 #include <boost/intrusive_ptr.hpp>
 #include <boost/static_assert.hpp>
