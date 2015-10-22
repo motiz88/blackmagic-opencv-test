@@ -24,6 +24,9 @@
 #include "ComPtr.h"
 #include "DeckLinkOpenCv.h"
 #include "DeckLinkCreateInstance.h"
+ 
+#define MAT_REFCOUNT(mat) \
+ (mat.u ? (mat.u->refcount) : 0)
 
 class CvMatDeckLinkVideoFrame : public IDeckLinkVideoFrame
 {
@@ -68,12 +71,12 @@ class CvMatDeckLinkVideoFrame : public IDeckLinkVideoFrame
         { return E_NOINTERFACE; }
 
         ULONG STDMETHODCALLTYPE AddRef()
-        { mat.addref(); return *mat.refcount; }
+        { mat.addref(); return MAT_REFCOUNT(mat); }
         ULONG STDMETHODCALLTYPE Release()
         {
             mat.release();
-            if (*mat.refcount == 0) delete this;
-            return *mat.refcount;
+            if (MAT_REFCOUNT(mat) == 0) delete this;
+            return MAT_REFCOUNT(mat);
         }
 };
 
