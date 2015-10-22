@@ -25,8 +25,8 @@
 #include "DeckLinkInputCallback.h"
 
 DeckLinkInputCallback::DeckLinkInputCallback()
-    : refCounter_(1)
 {
+    refCounter_ = 1;
 }
 
 DeckLinkInputCallback::~DeckLinkInputCallback()
