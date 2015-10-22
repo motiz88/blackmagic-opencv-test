@@ -37,38 +37,38 @@ class CvMatDeckLinkVideoFrame : public IDeckLinkVideoFrame
         // IDeckLinkVideoFrame
         //
 
-        long GetWidth()
+        long STDMETHODCALLTYPE GetWidth()
         { return mat.rows; }
-        long GetHeight()
+        long STDMETHODCALLTYPE GetHeight()
         { return mat.cols; }
-        long GetRowBytes()
+        long STDMETHODCALLTYPE GetRowBytes()
         { return mat.step; }
-        BMDPixelFormat GetPixelFormat()
+        BMDPixelFormat STDMETHODCALLTYPE GetPixelFormat()
         { return bmdFormat8BitBGRA; }
-        BMDFrameFlags GetFlags()
+        BMDFrameFlags STDMETHODCALLTYPE GetFlags()
         { return 0; }
-        HRESULT GetBytes(void **buffer)
+        HRESULT STDMETHODCALLTYPE GetBytes(void **buffer)
         {
             *buffer = mat.data;
             return S_OK;
         }
 
-        HRESULT GetTimecode(BMDTimecodeFormat format,
+        HRESULT STDMETHODCALLTYPE GetTimecode(BMDTimecodeFormat format,
             IDeckLinkTimecode **timecode)
         { *timecode = nullptr; return S_OK; }
-        HRESULT GetAncillaryData(IDeckLinkVideoFrameAncillary **ancillary)
+        HRESULT STDMETHODCALLTYPE GetAncillaryData(IDeckLinkVideoFrameAncillary **ancillary)
         { *ancillary = nullptr; return S_OK; }
 
         //
         // IDeckLinkVideoFrame
         //
 
-        HRESULT QueryInterface(REFIID iid, LPVOID *ppv)
+        HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv)
         { return E_NOINTERFACE; }
 
-        ULONG AddRef()
+        ULONG STDMETHODCALLTYPE AddRef()
         { mat.addref(); return *mat.refcount; }
-        ULONG Release()
+        ULONG STDMETHODCALLTYPE Release()
         {
             mat.release();
             if (*mat.refcount == 0) delete this;

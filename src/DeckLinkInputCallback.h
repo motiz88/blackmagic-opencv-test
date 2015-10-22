@@ -35,15 +35,15 @@ class DeckLinkInputCallback: public IDeckLinkInputCallback
         DeckLinkInputCallback();
         ~DeckLinkInputCallback();
 
-        HRESULT QueryInterface(REFIID iid, LPVOID *ppv);
-        ULONG AddRef();
-        ULONG Release();
+        HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, LPVOID *ppv);
+        ULONG STDMETHODCALLTYPE AddRef();
+        ULONG STDMETHODCALLTYPE Release();
 
-        HRESULT VideoInputFormatChanged (
+        HRESULT STDMETHODCALLTYPE VideoInputFormatChanged (
             BMDVideoInputFormatChangedEvents notificationEvents,
             IDeckLinkDisplayMode* newDisplayMode,
             BMDDetectedVideoInputFormatFlags detectedSignalFlags);
-        HRESULT VideoInputFrameArrived (IDeckLinkVideoInputFrame* videoFrame,
+        HRESULT STDMETHODCALLTYPE VideoInputFrameArrived (IDeckLinkVideoInputFrame* videoFrame,
             IDeckLinkAudioInputPacket* audioPacket);
 
         ComPtr<IDeckLinkVideoInputFrame> getVideoFrame();
