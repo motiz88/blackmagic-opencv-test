@@ -23,6 +23,7 @@
 
 #include "ComPtr.h"
 #include "DeckLinkOpenCv.h"
+#include "DeckLinkCreateInstance.h"
 
 class CvMatDeckLinkVideoFrame : public IDeckLinkVideoFrame
 {

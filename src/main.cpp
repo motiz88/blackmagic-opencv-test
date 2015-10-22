@@ -29,6 +29,7 @@
 
 #include "ComPtr.h"
 #include "DeckLinkCapture.h"
+#include "DeckLinkCreateInstance.h"
 #include "CCoInitializer.h"
  
 int main(int argc, char** argv)
