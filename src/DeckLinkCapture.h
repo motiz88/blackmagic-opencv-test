@@ -19,6 +19,7 @@
 #ifndef DECKLINKCAPTURE_H_
 #define DECKLINKCAPTURE_H_
 
+#include <boost/config.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
@@ -31,10 +32,10 @@ class DeckLinkCapture
 {
     public:
         DeckLinkCapture(ComPtr<IDeckLink> deckLink);
-        DeckLinkCapture(DeckLinkCapture&& other) noexcept;
+        DeckLinkCapture(DeckLinkCapture&& other) BOOST_NOEXCEPT;
         ~DeckLinkCapture();
 
-        DeckLinkCapture& operator=(DeckLinkCapture&& other) noexcept;
+        DeckLinkCapture& operator=(DeckLinkCapture&& other) BOOST_NOEXCEPT;
 
         // Mirar en DeckLinkApiMode.h para ver los modos soportados
         bool doesSupportVideoMode(BMDDisplayMode displayMode,

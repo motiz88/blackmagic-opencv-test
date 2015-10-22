@@ -18,6 +18,7 @@
 
 #include <DeckLinkAPI.h>
 
+#include <boost/config.hpp>
 #include <boost/thread.hpp>
 
 #include <opencv2/core/core.hpp>
@@ -44,7 +45,7 @@ DeckLinkCapture::DeckLinkCapture(ComPtr<IDeckLink> deckLink)
     }
 }
 
-DeckLinkCapture::DeckLinkCapture(DeckLinkCapture&& other) noexcept
+DeckLinkCapture::DeckLinkCapture(DeckLinkCapture&& other) BOOST_NOEXCEPT
 {
     deckLink_.swap(other.deckLink_);
     deckLinkInput_.swap(other.deckLinkInput_);
@@ -62,7 +63,7 @@ DeckLinkCapture::~DeckLinkCapture()
         stop();
 }
 
-DeckLinkCapture& DeckLinkCapture::operator=(DeckLinkCapture&& other) noexcept
+DeckLinkCapture& DeckLinkCapture::operator=(DeckLinkCapture&& other) BOOST_NOEXCEPT
 {
     deckLink_ = other.deckLink_;
     other.deckLink_.reset();
