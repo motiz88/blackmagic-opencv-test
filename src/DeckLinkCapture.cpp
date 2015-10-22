@@ -27,6 +27,7 @@
 #include "DeckLinkCapture.h"
 #include "DeckLinkInputCallback.h"
 #include "DeckLinkOpenCv.h"
+#include "BstrCompat.h"
 
 DeckLinkCapture::DeckLinkCapture(ComPtr<IDeckLink> deckLink)
     : deckLink_(deckLink),
@@ -196,28 +197,28 @@ DeckLinkCapture& DeckLinkCapture::operator>>(cv::Mat& videoFrame)
 
 std::string DeckLinkCapture::getDeviceModelName()
 {
-    const char* name;
+    BSTR name;
     error_ = deckLink_->GetModelName(&name);
     if (FAILED(error_)) {
         errorString_ = "Error al invocar a IDeckLinkInput::GetModelName()";
         return std::string();
     }
 
-    std::string modelName(name);
-    delete name;
+    std::string modelName = BstrToString(name);
+    SysFreeString(name);
     return modelName;
 }
 
 std::string DeckLinkCapture::getDeviceDisplayName()
 {
-    const char* name;
+    BSTR name;
     error_ = deckLink_->GetDisplayName(&name);
     if (FAILED(error_)) {
         errorString_ = "Error al invocar a IDeckLinkInput::GetDisplayName()";
         return std::string();
     }
 
-    std::string displayName(name);
-    delete name;
+    std::string displayName = BstrToString(name);
+    SysFreeString(name);
     return displayName;
 }
