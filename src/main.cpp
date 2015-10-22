@@ -29,9 +29,11 @@
 
 #include "ComPtr.h"
 #include "DeckLinkCapture.h"
+#include "CCoInitializer.h"
  
 int main(int argc, char** argv)
 {
+    CCoInitializer coinit;
     ComPtr<IDeckLinkIterator> deckLinkIterator = CreateDeckLinkIteratorInstance();
     if (! deckLinkIterator) {
         std::cerr << argv[0]
