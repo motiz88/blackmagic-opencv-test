@@ -29,12 +29,12 @@
 
 #include "ComPtr.h"
 #include "DeckLinkCapture.h"
-
-int main()
+ 
+int main(int argc, char** argv)
 {
     ComPtr<IDeckLinkIterator> deckLinkIterator = CreateDeckLinkIteratorInstance();
     if (! deckLinkIterator) {
-        std::cerr << program_invocation_short_name
+        std::cerr << argv[0]
                   << ": No se puede obtener el iterador de dispositivos DeckLink."
                   << std::endl;
         return 1;
@@ -55,7 +55,7 @@ int main()
     }
 
     if (captures.size() == 0) {
-        std::cerr << program_invocation_short_name
+        std::cerr << argv[0]
                   << ": No se encontró ningún dispositivo DeckLink."
                   << std::endl;
         return 2;
@@ -64,7 +64,7 @@ int main()
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         if (! capture.start())
-            std::cerr << program_invocation_short_name
+            std::cerr << argv[0]
                       << ": No se pudo iniciar la captura en el dispositivo '"
                       << capture.getDeviceDisplayName()
                       << "': "
