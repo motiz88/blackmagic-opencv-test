@@ -12,13 +12,15 @@ static inline std::string BstrToString(BSTR bstrString) {
 }
 
 #else
-typedef char* BSTR;
-static inline void SysFreeString(BSTR bstrString) {
-	delete bstrString;
-}
-static inline char* BstrToString(BSTR bstrString) {
-	return bstrString;
-}
+//typedef const char* BSTR;
+// typedef const CFStringRef  BSTR;
+//
+// static inline void SysFreeString(BSTR bstrString) {
+// 	delete bstrString;
+// }
+// static inline const char* BstrToString(BSTR bstrString) {
+// 	return (const char*)bstrString;
+// }
 #endif
 
 #endif /* BSTRCOMPAT_H_ */

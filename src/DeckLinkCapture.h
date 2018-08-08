@@ -44,7 +44,7 @@ class DeckLinkCapture
         std::string getDeviceModelName();
         std::string getDeviceDisplayName();
 
-        bool start(BMDDisplayMode displayMode = bmdModeHD1080i6000,
+        bool start(BMDDisplayMode displayMode = bmdModeHD1080i5994,
             BMDPixelFormat pixelFormat = bmdFormat8BitYUV);
         void stop();
 

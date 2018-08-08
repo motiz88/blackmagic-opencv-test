@@ -1,15 +1,20 @@
 ## Requirements
 
+ * Blackmagic Desktop Video Software
  * Blackmagic DeckLink SDK
- * OpenCV 3.0
+ * OpenCV
  * Boost C++
 
 ## Compilation
 
-Use CMake. Make sure to set `DeckLink_DIR`, `OpenCV_DIR` and `Boost_DIR` correctly.
-
-Note that in practice I've only compiled this on Windows with MSVC12 (2013) since forking it from [Jesús Torres' original Linux-only repo](https://github.com/ull-isaatc/blackmagic-test/tree/0a6ba03baeefa90bab00b355a59a566b4eb7b407). I'm fairly confident it can be built on Linux and Mac with minimal changes. If you do so, I'd love to know about it and accept any PRs that may be needed.
+- Set `DeckLink_DIR` in CMakeLists.txt. It is recommended to extract Blackmagic DeckLink SDK and create a symblic link, such as "bmdsdk" to the unarchived directory.
+- Using CMake, compile the program.
 
 ## Running
 
-Ensure that you have the OpenCV and Boost shared libraries in your PATH (or as appropriate for your system).
+- run the developed executable file named **blackmagic_test**
+- Ensure that you have OpenCV and Boost shared libraries in your PATH (or as appropriate for your system).
+
+## Note
+
+In practice, this project was forked from [motiz88 repo](https://github.com/motiz88/blackmagic-opencv-test) and add a few modifications to compile this on MacOS.

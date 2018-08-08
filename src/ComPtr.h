@@ -22,12 +22,15 @@
 #ifdef _WIN32
 #include <objbase.h>
 #else
-#include <LinuxCOM.h>
+//#include <LinuxCOM.h>
 #endif
 
 #include <boost/intrusive_ptr.hpp>
 #include <boost/static_assert.hpp>
 #include <boost/type_traits.hpp>
+
+#define CV_YUV2BGR_UYVY cv::COLOR_YUV2BGR_UYVY
+#define CV_BGRA2BGR cv::COLOR_BGRA2BGR 
 
 template <typename T>
 class ComPtr : public boost::intrusive_ptr<T>

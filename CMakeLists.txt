@@ -2,9 +2,11 @@ cmake_minimum_required(VERSION 2.8)
 
 
 # Define project name
-project(blackmagic-test)
+project(blackmagic-opencv-wrapper)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules")
+
+set(DeckLink_DIR "bmdsdk/")
 
 set(Boost_USE_STATIC_LIBS OFF) 
 set(Boost_USE_MULTITHREADED ON)  
@@ -42,10 +44,20 @@ target_link_libraries(blackmagic_test ${BOOST_Libraries})
 
 
 
-
 if (WIN32)
  target_link_libraries(blackmagic_test comsupp.lib ole32.lib)
 endif(WIN32)
+
+
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    FIND_LIBRARY(COCOA_LIBRARY Cocoa)
+    SET(EXTRA_LIBS ${COCOA_LIBRARY} ${EXTRA_LIBS})
+	set(CMAKE_CXX_FLAGS "-O2 -g -arch x86_64 -F/Library/Frameworks -Wno-format -std=c++11 ")
+	target_link_libraries(blackmagic_test ${EXTRA_LIBS})
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+
 
 #cmake_policy(PUSH)
 #cmake_policy(SET CMP0026 OLD)
