@@ -1,7 +1,11 @@
+## This fork
+ * Fix compiling in ubuntu
+ * Set input mode for Decklink SDI 4K
+
 ## Requirements
 
  * Blackmagic DeckLink SDK
- * OpenCV 3.0
+ * OpenCV 3.
  * Boost C++
 
 ## Compilation
