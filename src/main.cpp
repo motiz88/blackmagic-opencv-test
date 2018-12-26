@@ -75,7 +75,7 @@ int main(int argc, char** argv)
                       << std::endl;
     }
 
-    while (true) {
+    while (cv::waitKey(1)<0) {
         BOOST_FOREACH(DeckLinkCapture& capture, captures)
         {
             capture.grab();
@@ -83,10 +83,12 @@ int main(int argc, char** argv)
         for(unsigned i = 0; i < captures.size(); ++i) {
             cv::Mat frame;
             captures[i].retrieve(frame);
+            if(frame.empty()){
+                cv::waitKey(50);
+                break;
+            }
             cv::imshow(windows[i], frame);
         }
-        if (cv::waitKey(10) >= 0)
-            break;
     }
 
     BOOST_FOREACH(DeckLinkCapture& capture, captures)

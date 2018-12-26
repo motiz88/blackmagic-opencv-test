@@ -4,6 +4,11 @@ cmake_minimum_required(VERSION 2.8)
 # Define project name
 project(blackmagic-test)
 
+if(UNIX)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -pthread -lpthread -fpermissive -lboost_chrono -lboost_date_time -lboost_thread -lboost_atomic -std=c++11")
+    #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive -lboost_system -lboost_filesystem -lboost_thread -std=gnu++0x")
+endif()
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules")
 
 set(Boost_USE_STATIC_LIBS OFF) 
@@ -35,10 +40,19 @@ set_target_properties(${OpenCV_LIBS} PROPERTIES MAP_IMPORTED_CONFIG_MINSIZEREL R
 target_link_libraries(blackmagic_test ${OpenCV_LIBS})
 
 include (CMakeModules/UseDeckLink.cmake)
-target_link_libraries(blackmagic_test ${DeckLink_LIBRARIES})
+
+target_link_libraries(blackmagic_test 
+    ${DeckLink_LIBRARIES} 
+    -ldl 
+    -pthread
+)
 
 include_directories(${Boost_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS} ${DeckLink_INCLUDE_DIR})
-target_link_libraries(blackmagic_test ${BOOST_Libraries})
+target_link_libraries(blackmagic_test 
+    ${BOOST_Libraries} 
+    ${Boost_FILESYSTEM_LIBRARY}
+    ${Boost_SYSTEM_LIBRARY}
+)
 
 
 

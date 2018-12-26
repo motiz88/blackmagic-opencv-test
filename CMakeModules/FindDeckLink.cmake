@@ -32,11 +32,12 @@ else (WIN32)
     set (DeckLink_OS_PREFIX "Linux")
   endif (APPLE)
 endif (WIN32)
-
+message('im in !!' ${DeckLink_OS_PREFIX})
 # find header file
-find_path (DeckLink_DIR ${DeckLink_OS_PREFIX}/include/DeckLinkAPI.h
-           DOC "Path to SDK, i.e. directory containing Win, Linux, Mac, ...")
+#find_path (DeckLink_DIR ${DeckLink_OS_PREFIX}/include/DeckLinkAPI.h DOC "Path to SDK, i.e. directory containing Win, Linux, Mac, ...")
+set (DeckLink_DIR "/files_local/BM_DECKL_SDK_10.11.4/BM_DECKL_SDK_10.11.4")
 if (DeckLink_DIR)
+	message('dds')
   # set include dir
   set (DeckLink_INCLUDE_DIR "${DeckLink_DIR}/${DeckLink_OS_PREFIX}/include")
   # on windows, find idl file
